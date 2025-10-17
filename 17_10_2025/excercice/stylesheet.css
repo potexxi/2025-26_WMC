@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ueberschrift1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #37687d;
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.ueberschrift2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #b58f3e;
+}
+
+.ersterp{
+    color: #7a0d66;
+    font-size: 1.2em;
+    font-style: italic;
+    font-variant: normal;
+    text-align: center; /*asas*/
+}
+
+/*Kommentar*/
+.div1{
+    border: 0.35em solid #2d7349;
+    background-color: #d2e6fa;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.div2{
+    background-color: #fad2dd;
+    /*height: 500px;*/
+    /*width: 100pc;*/
+}
+
+.zweiterp{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-variant: normal;
+    font-style: oblique;
+}
+
+.div3{
+    background-color: #bdfcbb;
+    height: 200px;
+}
+
+.div4{
+    width: 50%;
+    background-color: #fcbbf3;
+    height: 400px;
+}

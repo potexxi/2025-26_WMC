@@ -1,0 +1,15 @@
+h1{
+    color: red;
+    font-size: 4em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.klasse2{
+    color: blue;
+    font-size: 3em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.klasse3{
+    border: solid black;
+}
