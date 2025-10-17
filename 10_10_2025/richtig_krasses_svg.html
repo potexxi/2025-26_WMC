@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Richtig krasses SVG — Demo</title>
+  <style>
+    /* Reset + base */
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    body{background:#05060a;display:flex;align-items:center;justify-content:center}
+    .wrap{width:100%;height:100vh;overflow:hidden;display:grid;place-items:center}
+    /* headline */
+    .title{position:absolute;top:32px;left:32px;color:#fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px;opacity:0.9}
+    /* center card to hold svg */
+    .stage{width:min(1200px,94vw);height:min(720px,88vh);border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.7);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px)}
+
+    /* small instructions */
+    .hint{position:absolute;right:28px;top:28px;color:rgba(255,255,255,0.65);font-size:12px}
+
+    /* responsive svg fills the stage */
+    svg{display:block;width:100%;height:100%}
+
+    /* glowing neon text style inside svg fallback */
+    .glowText{font-family:Inter,monospace;font-weight:800;fill:none;stroke-width:1.6;stroke-linejoin:round;}
+
+    /* subtle floating animation using CSS for decorative overlay */
+    @keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .float{animation:floaty 6s ease-in-out infinite}
+
+    /* make sure text selectable off */
+    .no-select{-webkit-user-select:none;-moz-user-select:none;user-select:none}
+
+  </style>
+</head>
+<body>
+  <div class="wrap no-select">
+    <div class="title">Richtig krasses SVG — Demo</div>
+    <div class="hint">Bewege die Maus für Parallax • Klicke/Tippe für Partikel-Boost</div>
+
+    <div class="stage" id="stage">
+      <!-- Full SVG: gradients, filters, animated shapes, particles, neon text -->
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" id="scene" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Definitions: gradients, filters -->
+        <defs>
+          <!-- neon gradient -->
+          <linearGradient id="neonGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#00e5ff" />
+            <stop offset="50%" stop-color="#7c00ff" />
+            <stop offset="100%" stop-color="#ff0072" />
+          </linearGradient>
+
+          <!-- radial glow -->
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+            <stop offset="30%" stop-color="#00e5ff" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+
+          <!-- soft blur filter for dreamy look -->
+          <filter id="softBlur" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <!-- color shift for chromatic aberration -->
+          <filter id="chromAb" x="-20%" y="-20%" width="140%" height="140%">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="base"/>
+            <feOffset in="base" dx="-6" dy="0" result="left"/>
+            <feOffset in="base" dx="6" dy="0" result="right"/>
+            <feBlend in="left" in2="right" mode="screen" />
+          </filter>
+
+          <!-- noise texture (using SVG feTurbulence) for subtle grain -->
+          <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise" />
+            <feColorMatrix type="saturate" values="0" />
+            <feBlend in="SourceGraphic" mode="overlay" />
+          </filter>
+
+          <!-- mask for animated window cutout -->
+          <mask id="softMask">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <!-- transparent rounded hole -->
+            <rect x="120" y="80" width="1360" height="740" rx="28" ry="28" fill="black" />
+          </mask>
+
+          <!-- small sparkle shape -->
+          <symbol id="spark">
+            <path d="M0-8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="white"/>
+          </symbol>
+
+        </defs>
+
+        <!-- background gradient panel -->
+        <rect width="100%" height="100%" fill="url(#neonGrad)" opacity="0.06"/>
+
+        <!-- huge blurred blobs for depth -->
+        <g filter="url(#softBlur)" opacity="0.9">
+          <ellipse cx="420" cy="260" rx="360" ry="160" fill="#7c00ff" opacity="0.35" />
+          <ellipse cx="1200" cy="480" rx="480" ry="220" fill="#ff0072" opacity="0.28" />
+          <ellipse cx="860" cy="140" rx="300" ry="120" fill="#00e5ff" opacity="0.2" />
+        </g>
+
+        <!-- animated neon grid lines -->
+        <g id="grid" stroke="rgba(255,255,255,0.06)" stroke-width="1">
+          <!-- verticals -->
+          <g id="vlines">
+            <!-- generated in JS for performance but keep some static to show fallback -->
+            <line x1="80" y1="0" x2="80" y2="900" />
+            <line x1="320" y1="0" x2="320" y2="900" />
+            <line x1="560" y1="0" x2="560" y2="900" />
+            <line x1="800" y1="0" x2="800" y2="900" />
+            <line x1="1040" y1="0" x2="1040" y2="900" />
+            <line x1="1280" y1="0" x2="1280" y2="900" />
+          </g>
+        </g>
+
+        <!-- moving waveform paths (neon) -->
+        <g id="waves" transform="translate(0,420)">
+          <path id="wave1" d="M0,120 C200,0 400,240 800,120 C1200,0 1400,240 1600,120" fill="none" stroke="url(#neonGrad)" stroke-width="4" stroke-linecap="round" opacity="0.95">
+            <animate attributeName="d" dur="10s" repeatCount="indefinite"
+              values="M0,120 C200,0 400,240 800,120 C1200,0 1400,240 1600,120; M0,120 C200,240 400,0 800,120 C1200,240 1400,0 1600,120; M0,120 C200,0 400,240 800,120 C1200,0 1400,240 1600,120" />
+          </path>
+
+          <path id="wave2" d="M0,160 C300,80 500,220 900,160 C1200,120 1400,220 1600,160" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2">
+            <animate attributeName="opacity" dur="6s" values="0.06;0.18;0.06" repeatCount="indefinite"/>
+          </path>
+        </g>
+
+        <!-- central neon shape with mask and chroma filter -->
+        <g id="center" transform="translate(400,180)">
+          <g filter="url(#chromAb)">
+            <g transform="translate(200,120)">
+              <path id="core" d="M0,-140 C120,-140 220,-60 260,20 C300,100 210,200 120,240 C30,280 -90,240 -170,160 C-250,80 -220,-40 -160,-110 C-100,-180 0,-140 0,-140 Z"
+                fill="url(#neonGrad)" opacity="0.95" transform="scale(1)" />
+
+              <!-- animated inner cut (hole) -->
+              <circle cx="40" cy="10" r="28" fill="#000" opacity="0.14" />
+
+              <!-- glow overlay -->
+              <path d="M0,-140 C120,-140 220,-60 260,20 C300,100 210,200 120,240 C30,280 -90,240 -170,160 C-250,80 -220,-40 -160,-110 C-100,-180 0,-140 0,-140 Z"
+                fill="url(#glow)" opacity="0.35" filter="url(#softBlur)"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- floating sparkles (symbols) -->
+        <g id="sparks" opacity="0.95">
+          <use href="#spark" x="300" y="160" opacity="0.8" transform="scale(0.9) rotate(12)" />
+          <use href="#spark" x="520" y="90" opacity="0.7" transform="scale(0.6) rotate(-10)" />
+          <use href="#spark" x="980" y="220" opacity="0.75" transform="scale(0.85) rotate(40)" />
+          <use href="#spark" x="1260" y="60" opacity="0.65" transform="scale(0.7) rotate(22)" />
+        </g>
+
+        <!-- neon headline inside SVG (stroke + glow) -->
+        <g transform="translate(160,620)">
+          <text class="glowText" x="0" y="0" font-size="64" stroke="url(#neonGrad)" style="filter:drop-shadow(0 6px 14px rgba(124,0,255,0.28))">KRASS</text>
+          <text x="0" y="54" font-size="18" fill="rgba(255,255,255,0.7)" font-weight="600">SVG Experience — HTML Demo</text>
+        </g>
+
+        <!-- particle layer (canvas-like using circles, animated by JS) -->
+        <g id="particles" />
+
+        <!-- subtle vignette -->
+        <rect width="100%" height="100%" fill="black" opacity="0.06" />
+
+      </svg>
+
+    </div>
+  </div>
+
+  <script>
+    // Interactive JS: particles + parallax + grid generation
+    (function(){
+      const svg = document.getElementById('scene');
+      const stage = document.getElementById('stage');
+      const particlesLayer = document.getElementById('particles');
+
+      // responsive sizes
+      function pt(x){return x}
+
+      // create dynamic grid lines based on viewport
+      function makeGrid(){
+        const vlines = svg.querySelector('#vlines');
+        vlines.innerHTML = '';
+        const w = svg.viewBox.baseVal.width;
+        const cols = Math.max(6, Math.floor(w / 160));
+        for(let i=0;i<=cols;i++){
+          const x = 80 + i * (w - 160) / cols;
+          const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+          line.setAttribute('x1', x);
+          line.setAttribute('y1', 0);
+          line.setAttribute('x2', x);
+          line.setAttribute('y2', 900);
+          vlines.appendChild(line);
+        }
+      }
+      makeGrid();
+      window.addEventListener('resize', makeGrid);
+
+      // particle system
+      const particles = [];
+      const maxP = 80;
+
+      function spawnParticle(x,y,boost=false){
+        if(particles.length>maxP) particles.shift();
+        const p = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        const r = 2 + Math.random()*6*(boost?2:1);
+        p.setAttribute('cx', x + (Math.random()-0.5)*60);
+        p.setAttribute('cy', y + (Math.random()-0.5)*60);
+        p.setAttribute('r', r);
+        p.setAttribute('fill', 'url(#glow)');
+        p.setAttribute('opacity', 0.9);
+        particlesLayer.appendChild(p);
+        particles.push({el:p,x:parseFloat(p.getAttribute('cx')),y:parseFloat(p.getAttribute('cy')),vx:(Math.random()-0.5)*1.8*(boost?3:1),vy:-0.6 - Math.random()*1.2,life:80 + Math.random()*80});
+      }
+
+      // continuous spawn
+      setInterval(()=>{
+        const w = svg.viewBox.baseVal.width;
+        const h = svg.viewBox.baseVal.height;
+        const x = 300 + Math.random()*(w-600);
+        const y = 420 + Math.random()*120;
+        spawnParticle(x,y);
+      },120);
+
+      // animate particles
+      function updateParticles(){
+        for(let i = particles.length-1;i>=0;i--){
+          const p = particles[i];
+          p.x += p.vx; p.y += p.vy; p.life -= 1.6;
+          p.el.setAttribute('cx', p.x);
+          p.el.setAttribute('cy', p.y);
+          const op = Math.max(0, p.life/140);
+          p.el.setAttribute('opacity', op*0.95);
+          p.el.setAttribute('r', Math.max(0.2, parseFloat(p.el.getAttribute('r'))* (0.998)));
+          if(p.life<=0){
+            p.el.remove(); particles.splice(i,1);
+          }
+        }
+        requestAnimationFrame(updateParticles);
+      }
+      requestAnimationFrame(updateParticles);
+
+      // parallax on mouse move
+      const centerGroup = svg.querySelector('#center');
+      const waves = svg.querySelector('#waves');
+      stage.addEventListener('mousemove', (e)=>{
+        const rect = stage.getBoundingClientRect();
+        const mx = (e.clientX - rect.left) / rect.width - 0.5;
+        const my = (e.clientY - rect.top) / rect.height - 0.5;
+        centerGroup.setAttribute('transform', `translate(${420 + mx*40},${180 + my*28})`);
+        waves.setAttribute('transform', `translate(${mx*60},${420 + my*18})`);
+        const v = Math.min(1, Math.abs(mx)+Math.abs(my));
+        svg.style.filter = `saturate(${1+v*0.6})`;
+      });
+
+      // click to burst particles
+      stage.addEventListener('click', (e)=>{
+        const rect = stage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width * svg.viewBox.baseVal.width;
+        const y = (e.clientY - rect.top) / rect.height * svg.viewBox.baseVal.height;
+        for(let i=0;i<18;i++) spawnParticle(x,y,true);
+      });
+
+      // touch support: spawn on touch
+      stage.addEventListener('touchstart', (ev)=>{
+        ev.preventDefault();
+        const t = ev.touches[0];
+        const rect = stage.getBoundingClientRect();
+        const x = (t.clientX - rect.left) / rect.width * svg.viewBox.baseVal.width;
+        const y = (t.clientY - rect.top) / rect.height * svg.viewBox.baseVal.height;
+        for(let i=0;i<20;i++) spawnParticle(x,y,true);
+      }, {passive:false});
+
+      // small ambient animation: scale the core shape slowly
+      const core = svg.getElementById('core');
+      let t = 0;
+      (function animateCore(){
+        t += 0.012;
+        const s = 1 + Math.sin(t)*0.02 + Math.cos(t*0.7)*0.01;
+        core.setAttribute('transform', `translate(200,120) scale(${s})`);
+        requestAnimationFrame(animateCore);
+      })();
+
+    })();
+  </script>
+</body>
+</html>
