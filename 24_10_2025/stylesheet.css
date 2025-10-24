@@ -1,0 +1,20 @@
+#header1{
+    color: blue;
+    font-size: 3em;
+    font-style: italic;
+}
+
+.list{
+    color: #824e64;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#container{
+    background-color: #aaf5a6;
+    border: 0.4em solid black;
+}
+
+.normal_text{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #110f73;
+}
