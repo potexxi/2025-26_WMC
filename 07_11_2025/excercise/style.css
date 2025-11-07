@@ -8,6 +8,7 @@
 
 .div1{
     background-color: blue;
+    color: blue;
     grid-row-start: 1;
     grid-row-end: 8;
     grid-column-start: 1;
@@ -16,12 +17,14 @@
 
 .div2{
     background-color: blue;
+    color: blue;
     grid-row-start: 3;
     grid-row-end: 5;
 }
 
 .div3{
     background-color: blue;
+    color: blue;
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -30,6 +33,7 @@
 
 .div4{
     background-color: blue;
+    color: blue;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 4;
@@ -39,6 +43,7 @@
 
 .div5{
     background-color: blue;
+    color: blue;
     grid-column-start: 5;
     grid-column-end: 6;
     grid-row-start: 2;
@@ -47,6 +52,7 @@
 
 .div6{
     background-color: blue;
+    color: blue;
     grid-column-start: 7;
     grid-row-start: 1;
     grid-row-end: 8;
@@ -54,6 +60,7 @@
 
 .div7{
     background-color: blue;
+    color: blue;
     grid-column-start: 8;
     grid-column-end: 10;
     grid-row-start: 7;
