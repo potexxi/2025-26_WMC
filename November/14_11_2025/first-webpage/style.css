@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+
+.log h2{
+    background: url("images/LOGO.jpg");
+    background-size: cover;
+}
+
+#landing{
+    background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("images/BG.jpg") center center;
+    background-size: cover;
+    height: 100vh;
+    color: white;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.nav .navbar{
+    display: flex;
+}
+
+.nav .navbar li{
+    list-style: none;
+    font-size: 1.4em;
+}
+
+.nav .navbar li a{
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+}
