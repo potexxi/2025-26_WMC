@@ -4,9 +4,11 @@
     box-sizing: 0;
 }
 
-.log h2{
-    background: url("images/LOGO.jpg");
+.log{
+    background: url("images/LOGO.jpg") center center;
     background-size: cover;
+    height: 100px;
+    width: 100px;
 }
 
 #landing{
@@ -35,4 +37,64 @@
     color: white;
     padding: 20px;
     text-decoration: none;
+}
+
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cards{
+    display: flex;
+    margin-top: 15%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cards .card{
+    padding: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 1.2;
+    background-color: white;
+    color: gray;
+    margin: 10px 10px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.15s ease-in;
+}
+
+.cards .card:hover {
+    transform: translateY(-5px);
+}
+
+.cards .card .fas{
+    color: blue;
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+    .cards{
+        flex-direction: column;
+        margin-top: 10%;
+    }
+    .cards .card .fas{
+        color: red;
+    }
+    .cards .card{
+        background-color: gray;
+        color: white;
+    }
+}
+
+@media (max-width: 800px) {
+    .cards{
+        flex-direction: column;
+        margin-top: 10%;
+    }
+    .cards .card .fas{
+        color: rgb(221, 255, 0);
+    }
+    .cards .card{
+        background-color: gray;
+        color: white;
+    }
 }
