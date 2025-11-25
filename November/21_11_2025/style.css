@@ -1,7 +1,41 @@
+.Smiley{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: rgb(189, 189, 2);
+}
+
+
+.nase{
+    display: flex;
+    height: 8%;
+    width: 4%;
+    background-color: black;
+    border-radius: 50%;
+}
+
+
 .augen{
     display: flex;
-    justify-content: center;
-    color: red;
-    height: 100vh;
+    justify-content: space-between;
+    width: 30%;
+    height: 20%;
     align-items: center;
+}
+
+.auge{
+    width: 20%;
+    height: 50%;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.mund{
+    
+    width: 45%;
+    height: 10%;
+    border-radius: 0 0 150px 150px ;
+    border-bottom: 75px solid black;
 }
