@@ -5,14 +5,14 @@
 }
 
 .log{
-    background: url("images/LOGO.jpg") center center;
+    background: url("../images/LOGO.jpg") center center;
     background-size: cover;
     height: 100px;
     width: 100px;
 }
 
 #landing{
-    background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("images/BG.jpg") center center;
+    background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../images/BG_kontakt.jpg") center center;
     background-size: cover;
     height: 100vh;
     color: white;
