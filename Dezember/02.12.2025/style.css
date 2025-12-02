@@ -1,0 +1,59 @@
+.container{
+    display: grid;
+    background-color: lightblue;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px 100px;
+    grid-template-rows: repeat(5, 50px);
+    
+}
+
+.eins{
+    grid-row-start: 1;
+    grid-row-end: 6;
+    background-color: black;
+}
+
+.zwei{
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: red;
+}
+
+.drei{
+    grid-row-start: 1;
+    grid-row-end: 6;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    background-color: green;
+}
+
+.vier{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 4;
+    grid-column-end: 7;
+    background-color: yellow;
+}
+
+.fünf{
+    grid-row-start: 2;
+    grid-row-end: 6;
+    grid-column-start: 5;
+    grid-column-end: 6;
+    background-color: blue;
+}
+
+.sechs{
+    grid-row-start: 5;
+    grid-row-end: 6;
+    grid-column-start: 8;
+    grid-column-end: 9;
+    background-color: purple;
+}
+
+.sieben{
+    grid-row-start: 1;
+    grid-row-end: 6;
+    grid-column-start: 7;
+    grid-column-end: 8;
+    background-color: brown;
+}
